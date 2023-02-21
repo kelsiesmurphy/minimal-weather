@@ -15,7 +15,7 @@ function App() {
       link.rel = 'icon';
       document.getElementsByTagName('head')[0].appendChild(link);
     }
-    link.href = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    link.href = `https://openweathermap.org/img/wn/${icon}@2x.png`;
   }
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function App() {
     return (
       <div className="App">
         <img
-          src={`http://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`}
+          src={`https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`}
         />
         <h1>Weather in {countrySelected}</h1>
         <h2>We got {weatherData?.weather?.[0]?.main}</h2>
