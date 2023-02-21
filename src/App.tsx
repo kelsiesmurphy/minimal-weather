@@ -8,7 +8,7 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherConversionData>();
 
   const setFavicon = (icon:string) => {
-    let link = document.querySelector("link[rel~='icon']");
+    let link:any = document.querySelector("link[rel~='icon']");
     if (!link) {
       link = document.createElement('link');
       link.rel = 'icon';
@@ -32,7 +32,7 @@ function App() {
 
     // Get Weather Data
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=64a8258206a7596fcc8a6c1fb321a3da"
+      `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${process.env.WEATHER_API}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -46,7 +46,7 @@ function App() {
 
   const onFormSubmit = (countrySelected:any) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${countrySelected.split(",")[0]}&lon=${countrySelected.split(",")[1]}&appid=64a8258206a7596fcc8a6c1fb321a3da`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${countrySelected.split(",")[0]}&lon=${countrySelected.split(",")[1]}&appid=${process.env.WEATHER_API}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -56,7 +56,6 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       });
-    
   }
 
     return (
