@@ -6,6 +6,7 @@ function App() {
 
   const [locationData, setLocationData] = useState<any>();
   const [weatherData, setWeatherData] = useState<WeatherConversionData>();
+  const [countrySelected, setCountrySelected] = useState<string>("London");
 
   const setFavicon = (icon:string) => {
     let link:any = document.querySelector("link[rel~='icon']");
@@ -32,7 +33,7 @@ function App() {
 
     // Get Weather Data
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${process.env.WEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=64a8258206a7596fcc8a6c1fb321a3da`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -46,10 +47,11 @@ function App() {
 
   const onFormSubmit = (countrySelected:any) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${countrySelected.split(",")[0]}&lon=${countrySelected.split(",")[1]}&appid=${process.env.WEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${countrySelected}&appid=64a8258206a7596fcc8a6c1fb321a3da`
     )
       .then((res) => res.json())
       .then((data) => {
+        setCountrySelected(countrySelected)
         setWeatherData(data as WeatherConversionData)
         setFavicon(data?.weather?.[0]?.icon)
       })
@@ -63,7 +65,7 @@ function App() {
         <img
           src={`http://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`}
         />
-        <h1>Weather in London</h1>
+        <h1>Weather in {countrySelected}</h1>
         <h2>We got {weatherData?.weather?.[0]?.main}</h2>
         <DropdownForm locationData={locationData} onFormSubmit={onFormSubmit} />
       </div>
