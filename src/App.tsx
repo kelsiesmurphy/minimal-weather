@@ -8,6 +8,7 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherConversionData>();
   const [countrySelected, setCountrySelected] = useState<string>("London");
 
+  // Set favicon to match weather
   const setFavicon = (icon:string) => {
     let link:any = document.querySelector("link[rel~='icon']");
     if (!link) {
