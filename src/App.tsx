@@ -66,6 +66,7 @@ function App() {
       .then((data) => {
         setCountrySelected(countrySelected)
         setWeatherData(data as WeatherConversionData)
+        
         setFavicon(data?.weather?.[0]?.icon)
       })
       .catch((err) => {
@@ -76,12 +77,12 @@ function App() {
     return (
       <div className="App">
         <img
-          src={`https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`}
+          src={weatherData?.cod != 404 ? `https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png` : "/help-circle.svg"}
           width="100"
           className="weather-icon"
         />
         <h1>Weather in {countrySelected}</h1>
-        <h2>{messageArr[Math.floor(Math.random() * messageArr.length)]} {weatherData?.weather?.[0]?.main.toLowerCase()}</h2>
+        <h2>{messageArr[Math.floor(Math.random() * messageArr.length)]} {weatherData?.cod != 404 ? weatherData?.weather?.[0]?.main.toLowerCase() : "no data, probably also clouds"}</h2>
         <DropdownForm locationData={locationData} onFormSubmit={onFormSubmit} />
       </div>
     );
