@@ -8,6 +8,17 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherConversionData>();
   const [countrySelected, setCountrySelected] = useState<string>("London");
 
+  const messageArr = [
+    "We got",
+    "Looks like",
+    "Another day of",
+    "Looking outside, we can see",
+    "Guess what! It's more",
+    "Get ready for",
+    "Hunners of"
+  ]
+
+
   // Set favicon to match weather
   const setFavicon = (icon:string) => {
     let link:any = document.querySelector("link[rel~='icon']");
@@ -66,9 +77,11 @@ function App() {
       <div className="App">
         <img
           src={`https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`}
+          width="100"
+          className="weather-icon"
         />
         <h1>Weather in {countrySelected}</h1>
-        <h2>We got {weatherData?.weather?.[0]?.main}</h2>
+        <h2>{messageArr[Math.floor(Math.random() * messageArr.length)]} {weatherData?.weather?.[0]?.main.toLowerCase()}</h2>
         <DropdownForm locationData={locationData} onFormSubmit={onFormSubmit} />
       </div>
     );
