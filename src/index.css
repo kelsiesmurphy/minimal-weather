@@ -108,6 +108,9 @@ button:focus-visible {
     color: #747bff;
   }
   button {
+    background-color: #e5e7eb;
+  }
+  select {
     background-color: #f9f9f9;
   }
 }
