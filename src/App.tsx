@@ -33,7 +33,7 @@ function App() {
 
     // Get Weather Data
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${process.env.WEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${import.meta.env.VITE_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -43,11 +43,12 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       });
+
   }, []);
 
   const onFormSubmit = (countrySelected:any) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${countrySelected}&appid=${process.env.WEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${countrySelected}&appid=${import.meta.env.VITE_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -57,7 +58,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err.message);
-      });
+      });    
   }
 
     return (
